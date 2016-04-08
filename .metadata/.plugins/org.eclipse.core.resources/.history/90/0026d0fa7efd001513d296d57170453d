@@ -10,21 +10,16 @@ public class Cart {
 		
 	}
 	
-	public void addItem(int code, String title, double price, int quantity, SalesItem type ){
-		
+	public void addItem(String title, double price, int quantity, SalesItem type ){
 		
 		if(type instanceof Book){
-			Book b = new Book(code, title, price, quantity, "", 0);	
-			
-			
+			type.setCode(1);
 		}
 		else if(type instanceof Dictionary){
-			Dictionary d = new Dictionary(code, title, price, quantity, "", 0, "", 0);
-			//type.setCode(2);
+			type.setCode(2);
 		}
 		else if(type instanceof AudioCD){
-			AudioCD acd = new AudioCD(code, title, price, quantity, "", "", 0);
-			//type.setCode(3);
+			type.setCode(3);
 		}
 	}
 	
