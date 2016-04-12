@@ -3,14 +3,11 @@ public class Book extends SalesItem {
 	
 	private String author;
 	private int numPages;
-	
-	//public Book(){}
 
 	public Book(int code, String title, double price, int quantity, String author, int numPages) {
 		super(code, title, price, quantity);
 		this.author = author;
-		this.numPages = numPages;
-		
+		this.numPages = numPages;	
 	}
 
 	public String getAuthor() {

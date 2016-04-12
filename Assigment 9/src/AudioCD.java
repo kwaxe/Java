@@ -5,10 +5,6 @@ public class AudioCD extends SalesItem {
 	private String label;
 	private int playTime;
 	
-	public AudioCD(){
-		
-	}
-
 	public AudioCD(int code, String title, double price, int quantity, String artist, String label, int playTime) {
 		super(code, title, price, quantity);
 		this.artist = artist;

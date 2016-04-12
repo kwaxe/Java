@@ -1,0 +1,88 @@
+import java.util.ArrayList;
+
+public class Cart {
+
+	private int numItems; // Current number of items in cart
+	//private SalesItem[] itemList;
+	private ArrayList<SalesItem> itemList;
+
+	public Cart(int maxNumOfItems) {	
+		this.numItems = 0;
+		itemList = new ArrayList<SalesItem>();
+		
+	}
+	
+	public void addItem(int code, String title, double price, int quantity, int type){
+		
+		SalesItem item = null;
+		SalesItem b = new Book(code, title, price, quantity, 
+				  			  ((Book) item).getAuthor(), 
+				  			  ((Book) item).getNumPages());
+		
+		
+		SalesItem d = new Dictionary(code, title, price, quantity, 
+							        ((Dictionary) item).getAuthor(), 
+								    ((Dictionary) item).getNumPages(), 
+								    ((Dictionary) item).getLanguage(), 
+								    ((Dictionary) item).getNumDef());
+		
+		
+		SalesItem acd = new AudioCD(code, title, price, quantity, 
+					 		       ((AudioCD) item).getArtist(), 
+					 		       ((AudioCD) item).getLabel(), 
+					 		       ((AudioCD) item).getPlayTime());
+		
+		if(numItems <= itemList.size()){
+			if(b instanceof Book){
+				numItems+=1;
+				itemList.add(b);
+			}
+			else if(d instanceof Dictionary){
+				numItems+=1;
+				itemList.add(d);
+			}
+			else if(acd instanceof AudioCD){					
+				numItems+=1;
+				itemList.add(acd);
+			}
+		}
+	}
+	
+	public double cartTotalCost(){
+		double total = 0;
+		for(int i = 0; i < numItems; i++){
+			total = total + itemList.get(i).itemTotalCost();
+		}
+		return total;
+	}
+	
+	public int getNumBooks(){
+		int books = 0;
+		for(int i = 0; i < itemList.size(); i++){
+			if(itemList.get(i).getCode() == 1){
+				books += itemList.get(i).getQuantity();
+			}
+		}
+		return books;
+	}
+	
+	public int getNumCDS(){
+		int cds = 0;
+		for(int i = 0; i < itemList.size(); i++){
+			if(itemList.get(i).getCode() == 3){
+				cds += itemList.get(i).getQuantity();
+			}
+		}
+		return cds;
+	}
+	
+	public String toString(){
+		
+		String str = "";
+		for(int i = 0; i < this.numItems; i++ ){
+			str+= "\n" + itemList.get(i).toString() + "\n";
+		}
+		return str;
+	}
+
+}

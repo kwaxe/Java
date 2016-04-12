@@ -6,9 +6,6 @@ public abstract class SalesItem {
 	private double price;
 	private int quantity;
 	
-	public SalesItem() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	public SalesItem(int code, String title, double price, int quantity) {
 		this.code = code;
@@ -54,7 +51,7 @@ public abstract class SalesItem {
 		return total;
 	}
 
-	
+	@Override
 	public String toString() {
 		String str = "";
 		str += "Code: " + code + "\n";

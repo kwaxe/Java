@@ -44,4 +44,6 @@
 		<item value="false" key="SortOrdering"/>
 		<item value="false" key="RemoveFinal"/>
 	</section>
+	<section name="JavaElementSearchActions">
+	</section>
 </section>

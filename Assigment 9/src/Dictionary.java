@@ -4,10 +4,6 @@ public class Dictionary extends Book {
 	private String language;
 	private int numDef;
 	
-	public Dictionary(){
-		
-	}
-	
 	public Dictionary(int code, String title, double price, int quantity, String author, int numPages, String language, int numDef) {
 		super(code, title, price, quantity, author, numPages);
 		this.language = language;
