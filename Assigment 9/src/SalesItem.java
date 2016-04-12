@@ -6,7 +6,6 @@ public abstract class SalesItem {
 	private double price;
 	private int quantity;
 	
-	
 	public SalesItem(int code, String title, double price, int quantity) {
 		this.code = code;
 		this.title = title;
@@ -50,7 +49,6 @@ public abstract class SalesItem {
 		double total = price * quantity;
 		return total;
 	}
-
 	@Override
 	public String toString() {
 		String str = "";
