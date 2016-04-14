@@ -9,4 +9,10 @@
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="Cart"/>
 <fullyQualifiedTypeName name="SalesItem"/>
+<fullyQualifiedTypeName name="StudentList"/>
+<fullyQualifiedTypeName name="Student"/>
+<fullyQualifiedTypeName name="java.awt.Button"/>
+<fullyQualifiedTypeName name="javafx.scene.Scene"/>
+<fullyQualifiedTypeName name="javafx.application.Application"/>
+<fullyQualifiedTypeName name="javafx.scene.control.Button"/>
 </qualifiedTypeNameHistroy>

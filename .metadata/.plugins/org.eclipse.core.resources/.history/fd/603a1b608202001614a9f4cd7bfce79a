@@ -1,0 +1,5 @@
+import javax.swing.ButtonModel;
+
+public class StudentInterface implements ButtonModel {
+
+}
