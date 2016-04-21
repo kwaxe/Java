@@ -1,0 +1,101 @@
+
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class StudentGUI extends Application {
+	
+	public Stage window;
+	public Scene searchScene;
+	public Scene insertScene;
+
+	public static void main(String[] args) {
+		Application.launch(args);
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception{
+		
+		window = primaryStage;
+		
+		Label insertStudentLabel = new Label("Welcome to the Insert Student Page");
+		Label searchStudentLabel = new Label("Welcome to the Search Student Page");
+		
+		
+		//Two Buttons Created
+		Button searchButton = new Button("Search Student");
+		Button insertButton = new Button("Insert Student");
+		searchButton.setPrefWidth(Double.MAX_VALUE);		
+		searchButton.setMaxHeight(Double.MAX_VALUE);		
+		insertButton.setPrefWidth(Double.MAX_VALUE);
+		insertButton.setMaxHeight(Double.MAX_VALUE);
+		
+		//Defining interface
+		HBox hb = new HBox();	
+		hb.getChildren().add(insertButton);
+		hb.getChildren().add(searchButton);		
+		Scene scene = new Scene(hb, 500, 300); 
+		primaryStage.setTitle("Student Interface");
+		primaryStage.setScene(scene);
+		primaryStage.show();	
+		
+		//Defining actions
+		InsertListenerClass insertListen = new InsertListenerClass();
+		SearchListenerClass searchListen = new SearchListenerClass();	
+		//insertButton.setOnAction(insertListen);
+		//searchButton.setOnAction(searchListen);
+		
+		insertButton.setOnAction(e -> window.setScene(insertScene));
+		searchButton.setOnAction(e -> window.setScene(searchScene));
+		
+		//Layout - Layout in vertical column
+		VBox vb1 = new VBox(20); //spaced out 20px
+		vb1.getChildren().addAll(insertStudentLabel);
+		insertScene = new Scene(vb1, 500, 300);
+		
+		VBox vb2 = new VBox(20); //spaced out 20px
+		vb2.getChildren().addAll(searchStudentLabel);
+		searchScene = new Scene(vb2, 500, 300);
+		
+		//window.setScene(searchScene);
+		
+	} 
+	class InsertListenerClass implements EventHandler<ActionEvent>{
+
+		@Override
+		public void handle(ActionEvent ae) {
+			
+			Label insertStudentLabel = new Label("Welcome to the Insert Student Page");
+			//Label searchStudentLabel = new Label("Welcome to the Search Student Page");
+			VBox vb1 = new VBox(20); //spaced out 20px
+			vb1.getChildren().addAll(insertStudentLabel);
+			insertScene = new Scene(vb1, 500, 300);
+			System.out.println("Insert Button Clicked");	
+		}	
+	}
+
+	class SearchListenerClass implements EventHandler<ActionEvent>{
+
+		@Override
+		public void handle(ActionEvent ae) {
+			System.out.println("Search Button Clicked");		
+		}
+	}
+	
+}
+
+
+
+
+
