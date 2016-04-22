@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -25,14 +26,24 @@ public class StudentGUI extends Application {
 	Button homeButtonScene;
 	
 	HBox homePane;
-	HBox insertPane;
-	HBox searchPane;
+	VBox insertPane;
+	VBox searchPane;
 	
 	Label insertLabel;
 	Label searchLabel;
 	Label homeLabel;
 	
 	Stage window;
+	
+	TextField id_TF;
+	TextField name_TF;
+	TextField age_TF;
+	TextField gpa_TF;
+	
+	TextField id_res;
+	Label name_res;
+	Label age_res;
+	Label gpa_res;
 
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -49,6 +60,10 @@ public class StudentGUI extends Application {
 			window.setScene(homeScene);
 		}
 	}
+	
+	public void submitButtonClicked(ActionEvent ae){
+		
+	}
 
 	@Override
 	public void start(Stage primaryStage){
@@ -63,88 +78,91 @@ public class StudentGUI extends Application {
 		searchButtonScene = new Button("Search Student");
 		homeButtonScene = new Button("Home");
 		
+		
+		
+		//Insert Label
+		Label idLabel = new Label("ID:");
+		Label nameLabel = new Label("Name:");
+		Label ageLabel = new Label("Age:");
+		Label gpaLabel = new Label("GPA:");
+
+		//Insert Text field
+		id_TF = new TextField("Enter ID");
+		name_TF = new TextField("Enter Name");
+		age_TF = new TextField("Enter age");
+		gpa_TF = new TextField("Enter GPA");
+
+		//Search Label
+		Label search_Id = new Label("Enter ID");
+		Label searchAgeLabel = new Label("Age:");
+		Label searchGpaLabel = new Label("GPA:");
+		
+		id_res = new TextField("Enter ID");
+		name_res = new Label();
+		age_res = new Label();
+		gpa_res = new Label();
+		
+		//Button homeButtonScene = null;
+		
+		//this.homeButtonScene = homeButtonScene;
+		
 		insertButtonScene.setOnAction(ae-> ButtonClicked(ae));
 		searchButtonScene.setOnAction(ae-> ButtonClicked(ae));
 		homeButtonScene.setOnAction(ae-> ButtonClicked(ae));
 		
 		homePane  = new HBox();
-		insertPane = new HBox();
-		searchPane = new HBox();
+		insertPane = new VBox();
+		searchPane = new VBox();
+		
+		Button submit = new Button("Submit");
 			
-		insertScene = new Scene(insertButtonScene, 500, 300);
-		searchScene = new Scene(searchButtonScene, 500, 300);
-		homeScene = new Scene(homeButtonScene, 500, 300);
+		insertScene = new Scene(insertButtonScene, 300, 300);
+		searchScene = new Scene(searchButtonScene, 300, 300);
+		homeScene = new Scene(homeButtonScene, 300, 300);
 		
-		homePane.getChildren().addAll(homeLabel, insertButtonScene, searchButtonScene);
-		insertPane.getChildren().add(insertLabel);
-		searchPane.getChildren().add(searchLabel);
+		homePane.getChildren().addAll(insertButtonScene, searchButtonScene);
+		insertPane.getChildren().addAll(insertLabel, homeButtonScene, idLabel, id_TF, nameLabel, name_TF, ageLabel, age_TF, gpaLabel, gpa_TF, submit);
+		searchPane.getChildren().addAll(searchLabel, id_res, name_res, age_res, gpa_res);
 		
-		homeScene = new Scene(homePane, 500, 300);
-		insertScene = new Scene(insertPane, 500, 300);
-		searchScene = new Scene(searchPane, 500, 300);
+		homeScene = new Scene(homePane, 300, 300);
+		insertScene = new Scene(insertPane, 300, 300);
+		searchScene = new Scene(searchPane, 300, 300);
 		
 		primaryStage.setTitle("Student Interface");
 		primaryStage.setScene(homeScene);
 		primaryStage.show();
 		
-		//Two Buttons Created
-//		Button searchButton = new Button("Search Student");
-//		Button insertButton = new Button("Insert Student");
-//		searchButton.setPrefWidth(Double.MAX_VALUE);		
-//		searchButton.setMaxHeight(Double.MAX_VALUE);		
-//		insertButton.setPrefWidth(Double.MAX_VALUE);
-//		insertButton.setMaxHeight(Double.MAX_VALUE);
+		searchButtonScene.setPrefWidth(250);			
+		insertButtonScene.setPrefWidth(250);
 		
-		//Defining interface
-//		HBox hb = new HBox();	
-//		hb.getChildren().add(insertButton);
-//		hb.getChildren().add(searchButton);		
-//		Scene scene = new Scene(hb, 500, 300); 
-//		primaryStage.setTitle("Student Interface");
-//		primaryStage.setScene(scene);
-//		primaryStage.show();
-		
-		
-		//Defining actions
-		InsertListenerClass insertListen = new InsertListenerClass();
-		SearchListenerClass searchListen = new SearchListenerClass();	
-		//insertButton.setOnAction(insertListen);
-		//searchButton.setOnAction(searchListen);
-		
-		//insertButton.setOnAction(e -> window.setScene(insertScene));
-		//searchButton.setOnAction(e -> window.setScene(searchScene));
-		
-		//Layout - Layout in vertical column
-		//VBox vb1 = new VBox(20); //spaced out 20px
-		//vb1.getChildren().addAll(insertStudentLabel);
-		//insertScene = new Scene(vb1, 500, 300);
-		
-		//VBox vb2 = new VBox(20); //spaced out 20px
-		//vb2.getChildren().addAll(searchStudentLabel);
-		//searchScene = new Scene(vb2, 500, 300);
-		
-		//window.setScene(searchScene);
-		
+		SubmitListenerClass submitListener = new SubmitListenerClass();	
+		submit.setOnAction(submitListener);
+					
 	} 
-}
 
 
-class InsertListenerClass implements EventHandler<ActionEvent>{
 
-	@Override
-	public void handle(ActionEvent ae) {
-		
-		System.out.println("Insert Button Clicked");	
-	}	
-}
-
-class SearchListenerClass implements EventHandler<ActionEvent>{
-
-	@Override
-	public void handle(ActionEvent ae) {
-		System.out.println("Search Button Clicked");		
+	class SubmitListenerClass implements EventHandler<ActionEvent>{
+		@Override
+		public void handle(ActionEvent ae) {
+			
+			System.out.println("Submit Button Clicked");
+			
+			String id = id_TF.getText();
+			String name = name_TF.getText();
+			String age = age_TF.getText();
+			String gpa = gpa_TF.getText();
+			
+			System.out.println(id + name + age + gpa);
+			
+			name_res.setText(name);
+			age_res.setText(age);
+			gpa_res.setText(gpa);
+		}	
 	}
 }
+
+
 
 
 
